@@ -1,0 +1,11 @@
+package com.company;
+
+
+public class Main {
+
+    public static void main(String[] args) {
+        Picture pikcher = new Picture();
+        pikcher.draw();
+    }
+}
+// 啊这，画得比我好看，emmmm
