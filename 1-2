@@ -1,0 +1,14 @@
+package com.company;
+
+public class Main {
+    public static void main(String[] args) {
+        Circle cirko = new Circle();
+        cirko.makeVisible();
+        cirko.moveDown();
+        cirko.moveDown();
+        cirko.moveDown();
+        cirko.makeInvisible();
+        cirko.makeInvisible();
+    }
+}
+
