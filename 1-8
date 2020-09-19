@@ -1,0 +1,29 @@
+package com.company;
+
+
+public class Main {
+
+    public static void main(String[] args) {
+        Circle sun = new Circle();
+        Triangle roof = new Triangle();
+        Square house = new Square();
+
+        sun.changeSize(40);
+        sun.changeColor("red");
+        sun.moveHorizontal(200);
+
+        roof.changeSize(50, 200);
+        roof.changeColor("green");
+        roof.moveHorizontal(70);
+        roof.moveVertical(70);
+
+        house.changeSize(100);
+        house.changeColor("yellow");
+        house.moveHorizontal(11);
+        house.moveVertical(85);
+
+        sun.makeVisible();
+        roof.makeVisible();
+        house.makeVisible();
+    }
+}
