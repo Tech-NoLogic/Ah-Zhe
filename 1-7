@@ -1,0 +1,16 @@
+package com.company;
+
+
+public class Main {
+
+    public static void main(String[] args) {
+        Circle cirko1 = new Circle();
+        Circle cirko2 = new Circle();
+        cirko1.changeColor("yellow");
+        cirko1.changeSize(100);
+        cirko2.changeColor("green");
+        cirko2.changeSize(10);
+        cirko1.makeVisible();
+        cirko2.makeVisible();
+    }
+}
