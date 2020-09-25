@@ -1,0 +1,151 @@
+package com.company;
+
+import java.util.Scanner;
+
+class  TicketMachine {
+    private int price;
+    private int MoneyLeft;
+    private int total;
+
+    public TicketMachine(int price) {
+        this.price = price;
+        MoneyLeft = 0;
+        total = 0;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void InsertMoney(int money) {
+        if (money >= 0) {
+            MoneyLeft += money;
+            total += money;
+        }
+        else {
+            System.out.println("Negative amounts are not allowed!");
+        }
+    }
+
+    public int getBalance() {
+        return MoneyLeft;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void printTicket() {
+        if (MoneyLeft >= price) {
+            System.out.println("Congratulations! Here's your ticket :");
+            System.out.println("***************************");
+            System.out.print("* The Tech-NoLogic line *\n"+
+                    "* From WHUT to HelloWorld *\n"+
+                    "* " + price + " cents *\n");
+            System.out.println("***************************");
+            MoneyLeft -= price;
+        }
+        else
+            System.out.println("Are you kidding me??????????????????????????? " + (price - MoneyLeft) + " more cents are needed.");
+    }
+
+    public void refund() {
+        System.out.println("Here is your balance : " + MoneyLeft + " cents.");
+        MoneyLeft = 0;
+    }
+
+    public void setPrice(int ChangePrice) {
+        System.out.println("The previous ticket price is " + price + " cents.");
+        price = ChangePrice;
+        System.out.println("Now the ticket price is " + price + " cents.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        TicketMachine TM = new TicketMachine(100);
+        Scanner scan = new Scanner(System.in);
+        int IntReceived;
+
+        System.out.println("#########################################");
+        System.out.println("###### Welcome to my TicketMachine ######");
+        System.out.println("#########################################");
+        System.out.println("# What can I do for you? #");
+        System.out.print("# 1. How much is the ticket? #\n" +
+                "# 2. Want to insert some money. #\n" +
+                "# 3. How much money have i inserted? #\n" +
+                "# 4. How much money have i left? #\n" +
+                "# 5. Please print the ticket. #\n" +
+                "# 6. Want to get back your balance. #\n" +
+                "# 7. Want to leave. #\n"+
+                "# 8. I'm the worker of the station and want to change the price. #\n"
+        );
+        System.out.println("#########################################");
+        System.out.print("Please enter your number (Integer only): ");
+
+        outer:
+        while ( true ) {
+            if (scan.hasNextInt()) {
+                IntReceived = scan.nextInt();
+
+                switch (IntReceived) {
+                    case 1:
+                        System.out.println("The price of the ticket : " + TM.getPrice() + " cents");
+                        break;
+                    case 2: {
+                        System.out.print("Please enter the sum (Integer only): ");
+                        if (scan.hasNextInt())
+                            TM.InsertMoney(scan.nextInt());
+                        else
+                            System.out.println("Integer only!");
+                        break;
+                    }
+                    case 3:
+                        System.out.println("You have inserted : " + TM.getTotal() + " cents");
+                        break;
+                    case 4:
+                        System.out.println("You have left : " + TM.getBalance() + " cents");
+                        break;
+                    case 5:
+                        TM.printTicket();
+                        break;
+                    case 6:
+                        TM.refund();
+                        break;
+                    case 7:
+                        break outer;
+                    case 8: {
+                        System.out.println("PLease enter the password :");
+                        if (scan.next().equals("Tech-NoLogic-yyds")) {
+                            System.out.println("Right\nPLease enter the sum of the price(Integer only) : ");
+                            System.out.println("or 'c' to cancel");
+                            while ( true ) {
+                                if (scan.hasNextInt()) {
+                                    TM.setPrice(scan.nextInt());
+                                    break;
+                                }
+                                else if (scan.next().equals("c")) {
+                                    break;
+                                }
+                                else {
+                                    System.out.println("Please enter the sum of the price(Integer only) : ");
+                                    System.out.println("or 'c' to cancel");
+                                }
+                            }
+                        }
+                        else {
+                            System.out.println("WRONG!");
+                        }
+                        break;
+                    }
+                    default:
+                        System.out.println("Error!");
+                        break;
+                }
+            }
+            scan.nextLine();
+            System.out.print("Please enter your number (Integer only): ");
+        }
+        System.out.println("End!");
+    }
+}
